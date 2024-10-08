@@ -13,6 +13,7 @@ class CompanyViewSet(ModelViewSet):
     pagination_class = CustomPagination
 
     def perform_create(self, serializer, *args, **kwargs):
+        """" Присваиваем порядковый номер в цепочке поставок"""
         company = serializer.save()
         if company.network_object == 'Завод':
             company.number_in_supply_chain = 0
@@ -26,9 +27,11 @@ class CompanyViewSet(ModelViewSet):
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filterset_fields = ('company',)
     pagination_class = CustomPagination
 
     def perform_create(self, serializer):
+        """Ссылка на компанию собственика продукта"""
         product = serializer.save()
         product.company = self.request.user.company
         product.save()

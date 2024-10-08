@@ -3,6 +3,7 @@ from rest_framework.serializers import ModelSerializer
 
 from company.models import Company, Product
 from company.paginators import CustomPagination
+from company.validators import NameCompanyValidator
 
 
 class ProductSerializer(ModelSerializer):
@@ -28,3 +29,4 @@ class CompanySerializer(ModelSerializer):
         model = Company
         fields = ['id', 'name', 'email', 'country', 'city', 'street', 'house', 'supplier',
                   'debt_supplier', 'network_object', 'number_in_supply_chain', 'product']
+        validators = [NameCompanyValidator(field='name')]

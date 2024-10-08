@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'users',
     'rest_framework_simplejwt',
     'django_filters',
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {

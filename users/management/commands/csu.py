@@ -15,5 +15,5 @@ class Command(BaseCommand):
             is_active=True,
         )
 
-        user.set_password('12345')
+        user.set_password(os.getenv("SUPER_USER_PASSWORD"))
         user.save()
