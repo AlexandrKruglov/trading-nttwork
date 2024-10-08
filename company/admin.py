@@ -11,8 +11,10 @@ def delete_debt(modeladmin, request, queryset):
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ('name', 'country', 'supplier')
+    list_display_links = ('supplier',)
     list_filter = ('city',)
     actions = [delete_debt]
+
 
 
 @admin.register(Product)
